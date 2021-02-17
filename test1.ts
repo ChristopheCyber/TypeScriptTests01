@@ -151,7 +151,9 @@ console.log('*************** CLASS ; SUPER() ***************');
 class Car {
     name: string;
     engineCapacity: string;
+    price: number = 110;
     constructor(name: string, engineCapacity: string) {
+        console.log(`Class Car constructor called with name= ${name} and engineCapacity= ${engineCapacity}`);
         this.name = name;
         this.engineCapacity = engineCapacity;
     }
@@ -159,6 +161,8 @@ class Car {
         console.log(`${this.name} car comes with ${this.engineCapacity} displacement`);
     }
 }
+const res1 = new Car('a','b');
+console.log('res1= ',res1,'res1.price= ',res1.price);
 new Car("maruti ciaz", "1500cc").describeCar();
 //
 class HondaCar extends Car{
