@@ -173,3 +173,25 @@ class HondaCar extends Car {
     }
 }
 new HondaCar("honda jazz", "1200cc", 4).describeHondaCar();
+//CLASS and THIS.
+class Department {
+    constructor(s1) {
+        this.name = s1;
+    }
+    method1() {
+        console.log('Department.method1 name=', this.name);
+    }
+    method2() {
+        console.log('Department.method2 name=', this.name);
+    }
+}
+const Dep1 = new Department('name1');
+Dep1.method1(); //=> name1
+const objet1 = { name: 'name1', method1: Dep1.method1 };
+objet1.method1(); //=> undefined !
+const objet2 = { name: 'name2', method1: Dep1.method1 };
+objet2.method1(); //=> name2
+//
+const objet3 = { name: 'name3', method1: Dep1.method1, method2: Dep1.method2 };
+objet3.method1(); //=> name3
+objet3.method2(); //=> name3

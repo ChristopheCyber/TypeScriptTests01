@@ -161,20 +161,43 @@ class Car {
         console.log(`${this.name} car comes with ${this.engineCapacity} displacement`);
     }
 }
-const res1 = new Car('a','b');
-console.log('res1= ',res1,'res1.price= ',res1.price);
+const res1 = new Car('a', 'b');
+console.log('res1= ', res1, 'res1.price= ', res1.price);
 new Car("maruti ciaz", "1500cc").describeCar();
 //
-class HondaCar extends Car{
-    seatingCapacity:number;
-    constructor(name:string,engineCapacity:string,seatingCapacity:number){
-        super(name,engineCapacity);
-        this.seatingCapacity=seatingCapacity;
+class HondaCar extends Car {
+    seatingCapacity: number;
+    constructor(name: string, engineCapacity: string, seatingCapacity: number) {
+        super(name, engineCapacity);
+        this.seatingCapacity = seatingCapacity;
     }
-    describeHondaCar(){
+    describeHondaCar() {
         super.describeCar();
         console.log(`this cars comes with ${this.seatingCapacity} seating capacity`);
     }
 }
-new HondaCar("honda jazz","1200cc",4).describeHondaCar();
+new HondaCar("honda jazz", "1200cc", 4).describeHondaCar();
+//CLASS and THIS.
+class Department {
+    name: string;
+    constructor(s1: string) {
+        this.name = s1;
+    }
+    method1() {
+        console.log('Department.method1 name=', this.name);
+    }
+    method2(this: Department) {
+        console.log('Department.method2 name=', this.name);
+    }
+}
+const Dep1 = new Department('name1');
+Dep1.method1(); //=> name1
+const objet1 = { name: 'name1', method1: Dep1.method1 };
+objet1.method1(); //=> undefined !
+const objet2 = { name: 'name2', method1: Dep1.method1 };
+objet2.method1(); //=> name2
+//
+const objet3 = { name: 'name3', method1: Dep1.method1, method2: Dep1.method2 };
+objet3.method1(); //=> name3
+objet3.method2(); //=> name3
 
