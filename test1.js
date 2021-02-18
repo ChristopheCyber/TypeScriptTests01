@@ -195,3 +195,25 @@ objet2.method1(); //=> name2
 const objet3 = { name: 'name3', method1: Dep1.method1, method2: Dep1.method2 };
 objet3.method1(); //=> name3
 objet3.method2(); //=> name3
+//CLASS and PRIVATE fields
+class Department2 {
+    constructor(s1) {
+        this.employees = [];
+        this.employees.push(s1);
+    }
+    methodAddEmp(employee) {
+        this.employees.push(employee);
+    }
+    method1() {
+        console.log('Department2.method1 employees=', this.employees);
+    }
+}
+const Dep2 = new Department2('schlienger');
+Dep2.method1(); //=> Dep2.employees = ['schlienger']
+Dep2.methodAddEmp('Christophe');
+Dep2.method1(); //=> Dep2.employees = ['schlienger','Christophe']
+/* External modifications are not possible anymore because of PRIVATE :
+Dep2.employees.push('Philippe');
+Dep2.employees[3]='Me!';
+Dep2.method1(); //=> Dep2.employees = ["schlienger", "Christophe", "Philippe", "Me!"]
+*/
