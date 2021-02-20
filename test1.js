@@ -197,15 +197,20 @@ objet3.method1(); //=> name3
 objet3.method2(); //=> name3
 //CLASS and PRIVATE fields
 class Department2 {
-    constructor(s1) {
+    // private employeePriv : string;
+    constructor(s1, employeePriv = s1) {
+        this.s1 = s1;
+        this.employeePriv = employeePriv;
         this.employees = [];
         this.employees.push(s1);
+        this.employeePriv = s1 + ' hi';
     }
     methodAddEmp(employee) {
         this.employees.push(employee);
     }
     method1() {
         console.log('Department2.method1 employees=', this.employees);
+        console.log('Department2.method1 employeePriv=', this.employeePriv);
     }
 }
 const Dep2 = new Department2('schlienger');
@@ -217,3 +222,18 @@ Dep2.employees.push('Philippe');
 Dep2.employees[3]='Me!';
 Dep2.method1(); //=> Dep2.employees = ["schlienger", "Christophe", "Philippe", "Me!"]
 */
+//
+class Departement3 {
+    constructor(employeePriv) {
+        this.employeePriv = employeePriv;
+        console.log('Departement3=> employeePriv=', this.employeePriv);
+    }
+}
+new Departement3('Me3');
+class Departement4 {
+    constructor(employeePriv) {
+        this.employeePriv = employeePriv;
+        console.log('Departement4=> employeePriv=', this.employeePriv);
+    }
+}
+new Departement4('Me4');
